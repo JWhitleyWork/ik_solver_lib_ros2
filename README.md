@@ -1,3 +1,3 @@
 # ik\_solver\_lib
 
-A ROS1 plugin for solving inverse kinematics.
+A ROS2 package for solving inverse kinematics.
