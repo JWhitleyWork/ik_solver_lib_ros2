@@ -11,7 +11,10 @@
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
-  <depend>orocos_kdl_vendor</depend>
+  <depend>eigen</depend>
+  <depend>liborocos-kdl-dev</depend>
+  <depend>trac_ik_lib</depend>
+  <depend>rclcpp</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

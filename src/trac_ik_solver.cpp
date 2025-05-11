@@ -1,14 +1,20 @@
 #include "ik_solver_lib/trac_ik/trac_ik_solver.hpp"
 
+#include <memory>
+#include <string>
+
+#include <rclcpp/rclcpp.hpp>
+
 namespace ik_solver_lib
 {
 
 void TracIKSolver::initialize(
+  rclcpp::Node::SharedPtr node,
   const std::string & chain_start, const std::string & chain_end,
   const std::string & urdf_param, double timeout, double eps)
 {
-  ik_solver_ptr_ = std::make_shared<TRAC_IK::TRAC_IK>(chain_start, chain_end, urdf_param, timeout,
-      eps, TRAC_IK::Speed);
+  ik_solver_ptr_ = std::make_shared<TRAC_IK::TRAC_IK>(
+    node, chain_start, chain_end, urdf_param, timeout, eps, TRAC_IK::Speed);
   bool valid = ik_solver_ptr_->getKDLChain(chain_);
 
   if (!valid) {

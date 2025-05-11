@@ -13,13 +13,20 @@ endif()
 find_package(ament_cmake_auto REQUIRED)
 ament_auto_find_build_dependencies()
 
+find_package(orocos_kdl REQUIRED)
+
 ament_auto_add_library(${PROJECT_NAME} SHARED
-  src/ik_solver_lib.cpp
+  src/trac_ik_solver.cpp
 )
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${orocos_kdl_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} ${orocos_kdl_LIBRARIES})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-ament_auto_package()
+ament_auto_package(
+  USE_SCOPED_HEADER_INSTALL_DIR
+)

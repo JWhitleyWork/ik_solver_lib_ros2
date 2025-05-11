@@ -3,11 +3,12 @@
 
 #include "ik_solver_lib/base/ik_solver_base.hpp"
 
-#include <kdl/chainfksolverpos_recursive.hpp>
-#include <rclcpp/logging.hpp>
-
 #include <memory>
 #include <string>
+
+#include <kdl/chainfksolverpos_recursive.hpp>
+#include <trac_ik/trac_ik.hpp>
+#include <rclcpp/rclcpp.hpp>
 
 namespace ik_solver_lib
 {
@@ -17,6 +18,7 @@ class TracIKSolver : public IKSolverBase
 public:
   TracIKSolver() = default;
   void initialize(
+    rclcpp::Node::SharedPtr node,
     const std::string & chain_start, const std::string & chain_end,
     const std::string & urdf_param, double timeout, double eps) override;
   bool solveIK(const KDL::Frame & desired_pose, KDL::JntArray & result_joint_positions) override;
